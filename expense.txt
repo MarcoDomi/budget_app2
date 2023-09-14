@@ -3,6 +3,6 @@ CLOTHES jc_penny 30.10
 SHOPPING barnes_&_noble 15.10
 FOOD chiles 27.45
 SHOPPING amazon 41.50
-SHOPPING old_navy 30.40
+clothes old_navy 30.40
 FOOD chipotle 12.70
 FOOD wendys 11.30

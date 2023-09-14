@@ -1,12 +1,11 @@
 class category:
     deposit = 0.0
-    expenses = {}
     total_expense_amount = 0.0
     
     def __init__(self, category_name) -> None:
         self.category_name = category_name.upper()
+        self.expenses = {}
       
-        
     def set_deposit(self,value:float) -> None:
         if self.__is_valid_amount(value):
             self.deposit = float(value)

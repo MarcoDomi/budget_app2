@@ -11,5 +11,6 @@ for line in file:
     my_budget.add_category_info(category_name, expense_name, amount)
 
 my_budget.print_categories()
-print(my_budget.get_category_count())
+#print(my_budget.get_category_count())
+print(my_budget.category_dict['FOOD'].expenses)
 file.close()
