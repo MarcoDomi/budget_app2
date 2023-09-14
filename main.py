@@ -18,6 +18,7 @@ for ca in category_list: #TODO ADD ERROR HANDLING FOR PERCENTS
     print(f"{percentage}% of income remaining")
     p = float(input(f"Enter {ca} category percentage:"))
     percentage -= p
-    my_budget.set_category_deposit(ca, p)
+    category_deposit = my_budget.income * (p/100)
+    my_budget.set_category_deposit(ca, category_deposit)
 
 my_budget.print_statement()
