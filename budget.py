@@ -6,6 +6,7 @@ class category:
         self.category_name = category_name.upper()
         self.expenses = {}
       
+
     def set_deposit(self,value:float) -> None:
         if self.__is_valid_amount(value):
             self.deposit = float(value)
@@ -66,11 +67,11 @@ class category:
 
 class budget:
     income = 0.0
-    category_dict = {}
-
+    total_expenditure = 0.0
     def __init__(self, first_name:str, last_name:str) -> None:
         self.first_name = first_name.capitalize()
         self.last_name = last_name.capitalize()
+        self.category_dict = {}
 
 
     def set_income(self, income:float):
@@ -79,6 +80,20 @@ class budget:
         else:
             print("Invalid income amount")
 
+    def set_category_deposit(self, category:str, deposit:float):
+        if self.__is_valid_amount(deposit):
+            try:
+                self.category_dict[category].set_deposit(deposit)
+            except:
+                print(f"The {category} category does not exist")
+
+
+    def get_category_count(self):
+        return len(self.category_dict)
+    
+    def get_categories(self) ->list:
+        return self.category_dict.keys()
+
 
     def add_category_info(self, category_name:str, expense_name:str, expense_amount:float):
         category_name = category_name.upper()
@@ -86,18 +101,18 @@ class budget:
             self.category_dict[category_name] = category(category_name)
 
         self.category_dict[category_name].add_expense(expense_name, expense_amount)
+        self.total_expenditure += expense_amount
 
-    def print_categories(self):
+    def print_statement(self):
         print(self.first_name, self.last_name)
         print(f"Income: ${self.income}")
         for cat in self.category_dict:
             self.category_dict[cat].print_expenses()
             print("*"*(15))
+        print(f"Total expenditure: ${self.total_expenditure}")
+        print(f"Income Remaining: ${self.income - self.total_expenditure}")
 
-    def get_category_count(self):
-        return len(self.category_dict)
-        
-
+    
     def __is_valid_amount(self,value:float) -> bool:
         '''check if a floating point value has no more than 2 digits after the decimal point'''
         str_value = str(float(value))
